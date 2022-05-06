@@ -1,0 +1,119 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.carousel {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.carousel > ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.slide {
+    position: absolute;
+    inset: 0;       /*makes top and left 0*/
+    opacity: 0;
+    transition: 300ms opacity ease-in-out;
+    transition-delay: 300ms;
+}
+
+.slide > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.slide[data-active] {
+    opacity: 1;
+    transition-delay: 0ms;
+}
+
+.carousel-btn {
+    position: absolute;
+    z-index: 2;
+    background: none;
+    border: none;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, .5);
+    cursor: pointer;
+    border-radius: .25rem;
+    padding: 0 .5rem;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.side-arrows{
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-btn:hover, 
+.carousel-btn:focus {
+    color: white;
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.carousel-btn:focus {
+    outline: 1px solid black;
+}
+
+.prev {
+    left: 1rem;
+}
+
+.next {
+    right: 1rem;
+}
+
+.expand {
+    bottom: 2.5%;
+    right: 1rem;
+    font-size: 2.5rem;
+}
+
+.container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background:rgba(0, 0, 0, 1);
+    z-index: 3;
+    display: none;
+    user-select: none;
+}
+.container.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cross {
+    z-index: 4;
+    color: rgba(255, 255, 255, .5);
+    background:rgba(255, 255, 255, .1);
+    border: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cross:hover {
+    color: white;
+    background:rgba(255, 255, 255, .5);
+}
+
+.container img {
+    max-width: 75vw;
+    max-height: 90vh;
+}
