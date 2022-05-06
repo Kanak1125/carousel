@@ -1,2 +1,5 @@
 # carousel
-carousel with auto slideshow mode
+
+The project based on HTML5, css and Js. 
+Additional feature:
+  - Auto slideshow mode.
