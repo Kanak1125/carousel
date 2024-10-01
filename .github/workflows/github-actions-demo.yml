@@ -34,5 +34,5 @@ jobs:
           Get-ScriptAnalyzerRule
 
       - name: My first step
-        if: ${{ github.event_name == 'pull_request' && github.event.action == 'unassigned}}
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'unassigned' }}
         run: echo This event is a pull request that had an assignee removed.
