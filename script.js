@@ -3,7 +3,8 @@ const buttons = document.querySelectorAll('[data-carousel-button]')
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         const offset = button.dataset.carouselButton === "next" ? 1 : -1        
-        //here 'carousel-button' is converted to camelCase (i.e. carouselButton) while getting the 'data' attribute through the 'dataset' attribute...
+        
+        // getting 'data' attribute through the 'data-set' attribute...
         const slides = button
         .closest("[data-carousel]")
         .querySelector("[data-slides]")
