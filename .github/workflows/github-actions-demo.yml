@@ -45,7 +45,49 @@ jobs:
         run: echo This event is a pull request that had an assignee removed. No this will be the pull-request.
 
 
-    strategy:
-      matrix: 
-        version: [10, 12, 14]
-        os: [ubuntu-latest, windows-latest]
+  job_1:
+    name: Add 7 and 11
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          expr 7 + 11 > math-work.txt
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v4
+        with:
+          name: work_pre
+          path: math-work.txt
+
+  job_2: 
+    name: Divide by 2
+    needs: job_1
+    runs-on: windows-latest
+    steps:
+      - name: Download math result for job 1
+        uses: actions/download-artifact@v4
+        with:
+          name: work_pre
+      - shell: bash
+        run: |
+          value=`cat math-work.txt`
+          expr $value \/ 2 > math-work.txt
+      - name: Uplod math result for the job 2
+        uses: actions/upload-artifact@v4
+        with:
+          name: work_final
+          path: math-work.txt
+
+  job_3:
+    name: Display results
+    needs: job_2
+    runs-on: macOS-latest
+    steps:
+      - name: Download the last math result for job 2
+        uses: actions/download-artifact@v4
+        with:
+          name: work_final
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat math-work.txt`
+          echo The result is $value
